@@ -49,4 +49,41 @@ echo 'source ${PERLBREW_ROOT}/etc/bashrc' >> "/home/vagrant/.bash_profile"
 
 chmod 777 -R /opt
 
+sudo apt-get install mysql-server
+
+sudo apt-get install build-essential checkinstall libx11-dev libxext-dev zlib1g-dev libpng12-dev libjpeg-dev
+sudo apt-get install libjpeg62-dev libpng-dev libfreetype6-dev libfreetype6-dev libtiff5-dev liblcms1-dev
+
+TOP="$HOME/local"
+
+if [ -n "$1" ]; then
+    TOP=$1
+fi
+
+mkdir -p $TOP
+cd "$TOP"
+wget -c http://www.imagemagick.org/download/ImageMagick.tar.gz
+tar xzvf ImageMagick.tar.gz
+cd ImageMagick* # this isn't exactly clean
+
+
+PERL_CORE=$(perl -e 'print grep { -d } map { "$_/CORE" } @INC')
+PERL_BIN=$(which perl)
+
+PERL_THREADS=$(perl -V | grep -c 'useithreads=define')
+
+THREAD_FLAG="--with-threads"
+
+if [ $PERL_THREADS = 0 ]; then
+    THREAD_FLAG="--without-threads"
+fi
+
+LDFLAGS=-L$PERL_CORE \
+    ./configure --with-jpeg=yes --with-png=yes  --with-jp2=yes --prefix $TOP \
+    --with-perl=$PERL_BIN --with-gslib --with-fontconfig=yes \
+    --with-freetype=yes --with-webp=yes --with-ghostscript=yes --with-jasper=yes --with-librsvg=yes --with-libtiff=yes \
+        --with-webp=yes \
+    --enable-shared $THREAD_FLAG
+
+make install
 
