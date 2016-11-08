@@ -37,6 +37,7 @@ source /home/vagrant/.bash_profile
 perlbrew --notest install perl-5.20.2 -Dcccdlflags=-fPIC -Duseshrplib -Duse64bitall -Duselargefiles
 
 perlbrew switch perl-5.20.2
+source /home/vagrant/.bash_profile
 perlbrew install-cpanm
 
 cpanm -f DBD::mysql
