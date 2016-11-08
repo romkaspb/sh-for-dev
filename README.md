@@ -7,7 +7,7 @@ Simple script to run on vagrant virtual machine
 3) Move Vagrantfile to your vagrant directory  
 4) Then, move there and create directory names `dev` and move `install.sh` there    
 5) `vagrant up`  
-6) `ssh vagrant@127.0.0.1 -p 2202`
+6) `vagrant ssh` or `ssh vagrant@127.0.0.1 -p 2202`
 7) `ssh-keygen`
 8) On the host machine: `ssh-copy-id "vagrant@127.0.0.1 -p 2202"` (for key authentification)  
 9) Switch to vagrant  
