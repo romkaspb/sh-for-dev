@@ -44,6 +44,9 @@ cpanm -f DBD::mysql
 
 cpanm JSON::XS JavaScript::Minifier::XS CSS::Minifier::XS Crypt::Eksblowfish::Bcrypt
 
+echo "Install special modules for PERL"
+cpan install URI::Escape CGI::Carp
+
 echo 'export PERLBREW_ROOT=/opt/perl5' >> "/home/vagrant/.bash_profile"
 echo 'source ${PERLBREW_ROOT}/etc/bashrc' >> "/home/vagrant/.bash_profile"
 
@@ -53,6 +56,9 @@ sudo apt-get install mysql-server
 
 sudo apt-get install build-essential checkinstall libx11-dev libxext-dev zlib1g-dev libpng12-dev libjpeg-dev
 sudo apt-get install libjpeg62-dev libpng-dev libfreetype6-dev libfreetype6-dev libtiff5-dev liblcms1-dev
+
+echo "Install sendmail"
+sudo apt-get install sendmail
 
 TOP="$HOME/local"
 
