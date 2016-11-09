@@ -60,6 +60,10 @@ sudo apt-get install libjpeg62-dev libpng-dev libfreetype6-dev libfreetype6-dev 
 echo "Install sendmail"
 sudo apt-get install sendmail
 
+echo "Settings for sendmail"
+echo '127.0.0.1 vagrant-ubuntu-trusty-64' >> "/etc/hosts"
+echo 'HostFile=/etc/hosts' >> "/etc/mail/sendmail.conf"
+
 TOP="$HOME/local"
 
 if [ -n "$1" ]; then
